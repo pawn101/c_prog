@@ -1,7 +1,11 @@
+//This is a C source in which I practice operations with structs
+//The exercises are inspired by "Programozzunk C nyelven!" section 3.7.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
+#define N 100
 //Creating a struct within a struct - a circle defined by its centre and radius
 struct circle {
       struct {
@@ -24,7 +28,26 @@ struct employee {
         double salary;
         struct date work_start;
 };
-//----------------- Employee identification structs
+
+//First, a structure for books
+struct book {
+        char title[30];
+        char author[30];
+        int date;
+        double price;
+};
+//A struct vector of books
+struct book lib[N];
+
+//lib_random: filling the library with random titles
+//The function fills lib[] with made up titles and authors, print dates and prices
+void lib_random(struct book lib[])
+{
+        //RNG initialization
+        srand(time(NULL));
+//TODO: create a for loop and populate the library entries
+        return;
+}
 
 int main(void)
 {
