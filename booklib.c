@@ -14,7 +14,21 @@ struct book {
 	double price;
 };
 
-void fillbooklib(struct book *booklib);
+void fillbooklib(struct book *booklib)
+{
+        int k;
+        // Initializing RNG
+        srand(time(NULL));
+        for (k = 0; k < N; k++) {
+               sprintf(booklib[k].title, "Title %d", k);
+               sprintf(booklib[k].author, "Author %d", k);
+               booklib[k].date = rand() % 628;
+               booklib[k].price = rand() / 1356.11;
+
+        }
+        return;
+}
+
 void searchbooklib(struct book *resultlib, struct book *booklib);
 
 int main(void)
