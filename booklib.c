@@ -8,8 +8,8 @@
 #define N 100
 
 struct book {
-	char * title;
-	char * author;
+	char title[40];
+	char author[40];
 	int date;
 	double price;
 };
@@ -23,35 +23,53 @@ void fillbooklib(struct book *booklib)
                sprintf(booklib[k].title, "Title %d", k);
                sprintf(booklib[k].author, "Author %d", k);
                booklib[k].date = rand() % 628;
-               booklib[k].price = rand() / 1356.11;
-
+               booklib[k].price = rand() / 1000356.11;
+               //printf("%lf\n", booklib[k].price);
         }
         return;
 }
 
-void searchbooklib(struct book *resultlib, struct book *booklib);
+int searchbooklib(struct book *resultlib, struct book *booklib, int num_match)
+{
+        int k = 0;
+        num_match = 0; 
+        for (k = 0; k < N; k++) {
+                if (booklib[k].price >= 100 && booklib[k].price < 200) {
+                        resultlib[num_match] = booklib[k];
+                        num_match++;
+                }
+        //printf("num_match = %d\n", num_match);
+        }
+        return num_match;
+}
+
+void printbooklib(struct book *booklib, int M)
+{
+        int k = 0;
+        for (k = 0; k < M; k++) {
+                printf("Title: %s\nAuthor: %s\nDate: %d\nPrice: %lf\n\n", 
+                                booklib[k].title, booklib[k].author, 
+                                booklib[k].date, booklib[k].price);
+        }
+        return;
+}
 
 int main(void)
 {
 
 	int k;
 	int num_match;
-	struct book *booklib[N];
-	struct book *resultlib[N];
-	for (k = 0; k < N; k++) {
-		booklib[k] = malloc(sizeof(struct book));
-		resultlib[k] = malloc(sizeof(struct book));
-		if (0 == booklib[k] || 0 == resultlib[k]) {
-			printf("Error! Not enough memory!\n");
-			exit(-1);
-		}
-	}
+	struct book booklib[N];
+	struct book resultlib[N];
 	// Part 2: Filling booklib
-	
+    fillbooklib(booklib);	
 	// Part 3: Searching in booklib, filling resultlib
-	for (k = 0; k < N; k++) {
-		free(booklib[k]);
-		free(resultlib[k]);
-	}
+    num_match = searchbooklib(resultlib, booklib, num_match);
+    //printf("num_match = %d\n", num_match);
+    // Printing the results
+    if (0 == num_match) {
+            printf("No matches found!\n");
+    }
+    else printbooklib(resultlib, num_match);
 	return 0;
 }
