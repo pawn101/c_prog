@@ -27,7 +27,16 @@ void push(struct node * head, int val)
         current->next->next = NULL;
         return;
 }
-//The push function comes now
+
+void push_head(struct node ** head, int val)
+{
+        struct node * new_node;
+        new_node = malloc(sizeof(struct node));
+        new_node->val = val;
+        new_node->next = *head;
+        *head = new_node;
+        return;
+}
 
 int main(void)
 { 
