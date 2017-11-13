@@ -28,6 +28,7 @@ void push(struct node * head, int val)
         return;
 }
 
+//reason for using double pointer: https://stackoverflow.com/questions/7271647/what-is-the-reason-for-using-a-double-pointer-when-adding-a-node-in-a-linked-lis
 void push_head(struct node ** head, int val)
 {
         struct node * new_node;
