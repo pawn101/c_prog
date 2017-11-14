@@ -41,6 +41,8 @@ void push_head(struct node ** head, int val)
         return;
 }
 
+//The pop function comes next
+
 int main(void)
 { 
         struct node * head = NULL;
