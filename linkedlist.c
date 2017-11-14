@@ -23,6 +23,7 @@ void push(struct node * head, int val)
                 current = current->next;
         }
         current->next = malloc(sizeof(struct node));
+        if (current->next == NULL) exit(-1);
         current->next->val = val;
         current->next->next = NULL;
         return;
@@ -33,6 +34,7 @@ void push_head(struct node ** head, int val)
 {
         struct node * new_node;
         new_node = malloc(sizeof(struct node));
+        if (new_node == NULL) exit(-1);
         new_node->val = val;
         new_node->next = *head;
         *head = new_node;
